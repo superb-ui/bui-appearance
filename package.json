@@ -1,0 +1,10 @@
+
+{
+  "name": "bui-appearance",
+  "version": "1.0.0",
+  "description": "BUI for widget toolkit (GTK)",
+  "global": "true",
+  "scripts": ["bin/bui-appearance"],
+  "files": ["man/bui-appearance.1"],
+  "install": "make install"
+}

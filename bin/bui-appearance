@@ -1,0 +1,119 @@
+#!/bin/sh
+
+#     ____  __  ______
+#    / __ )/ / / /  _/
+#   / __  / / / // /
+#  / /_/ / /_/ // /
+# /_____/\____/___/
+
+# File:         bui-appearance
+# Description:  BUI for widget toolkit
+# Author:       NNB
+#               └─ https://github.com/NNBnh
+# URL:          https://github.com/NNBnh/bui-appearance
+# License:      GPLv3
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+# Valuse
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+
+GTK_THEME="${BUI_GTK_THEME:-${GTK_THEME:-Adwaita}}"
+GTK_TOOLBAR_STYLE="${BUI_GTK_TOOLBAR_STYLE:-GTK_TOOLBAR_BOTH}"
+GTK_TOOLBAR_ICON_SIZE="${BUI_GTK_TOOLBAR_ICON_SIZE:-GTK_ICON_SIZE_LARGE_TOOLBAR}"
+ICON_THEME="${BUI_ICON_THEME:-Adwaita}"
+MOUSE_CURSOR_THEME="${BUI_MOUSE_CURSOR_THEME:-Adwaita}"
+MOUSE_CURSOR_SIZE="${BUI_MOUSE_CURSOR_SIZE:-0}"
+FONT_FAMILY="${BUI_FONT_FAMILY-Sans}"
+FONT_SIZE=" ${BUI_FONT_SIZE:-10}"
+SUBPIXEL="${BUI_SUBPIXEL:-none}"
+
+if [ "$BUI_HINT_STYLE" = 'none' ]; then
+	HINT='0'
+	HINT_STYLE='hintfull'
+else
+	HINT='1'
+	HINT_STYLE="hint${BUI_HINT_STYLE:-full}"
+fi
+
+for option in BUTTON_IMAGES MENU_IMAGES EVENT_SOUNDS INPUT_FEEDBACK_SOUNDS FONT_ANTIALIAS; do
+	eval "if [ \"\$BUI_$option\" = 'false' ]; then $option='0'; else $option='1'; fi"
+done
+
+
+# Start
+mkdir -p "$XDG_CONFIG_HOME/gtk-3.0"
+printf "[Settings]
+gtk-theme-name=$GTK_THEME
+gtk-icon-theme-name=$ICON_THEME
+gtk-font-name=$FONT_FAMILY$FONT_SIZE
+gtk-cursor-theme-name=$MOUSE_CURSOR_THEME
+gtk-cursor-theme-size=$MOUSE_CURSOR_SIZE
+gtk-toolbar-style=$GTK_TOOLBAR_STYLE
+gtk-toolbar-icon-size=$GTK_TOOLBAR_ICON_SIZE
+gtk-button-images=$BUTTON_IMAGES
+gtk-menu-images=$MENU_IMAGES
+gtk-enable-event-sounds=$EVENT_SOUNDS
+gtk-enable-input-feedback-sounds=$INPUT_FEEDBACK_SOUNDS
+gtk-xft-antialias=$FONT_ANTIALIAS
+gtk-xft-hinting=$HINT
+gtk-xft-hintstyle=$HINT_STYLE
+gtk-xft-rgba=$SUBPIXEL" > "$XDG_CONFIG_HOME/gtk-3.0/settings.ini"
+
+mkdir -p "$XDG_CONFIG_HOME/gtk-2.0"
+printf "gtk-theme-name=\"$GTK_THEME\"
+gtk-icon-theme-name=\"$ICON_THEME\"
+gtk-font-name=\"$FONT_FAMILY$FONT_SIZE\"
+gtk-cursor-theme-name=\"$MOUSE_CURSOR_THEME\"
+gtk-cursor-theme-size=$MOUSE_CURSOR_SIZE
+gtk-toolbar-style=$GTK_TOOLBAR_STYLE
+gtk-toolbar-icon-size=$GTK_TOOLBAR_ICON_SIZE
+gtk-button-images=$BUTTON_IMAGES
+gtk-menu-images=$MENU_IMAGES
+gtk-enable-event-sounds=$EVENT_SOUNDS
+gtk-enable-input-feedback-sounds=$INPUT_FEEDBACK_SOUNDS
+gtk-xft-antialias=$FONT_ANTIALIAS
+gtk-xft-hinting=$HINT
+gtk-xft-hintstyle=\"$HINT_STYLE\"
+gtk-xft-rgba=\"$SUBPIXEL\"" > "$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+printf "[Filechooser Settings]
+LocationMode=path-bar
+ShowHidden=false
+ExpandFolders=false
+ShowSizeColumn=true
+GeometryX=293
+GeometryY=102
+GeometryWidth=780
+GeometryHeight=585
+SortColumn=name
+SortOrder=ascending
+StartupMode=recent" > "$XDG_CONFIG_HOME/gtk-2.0/gtkfilechooser.ini"
+
+mkdir -p "$XDG_DATA_HOME/icons/default"
+printf "[Icon Theme]
+Name=Default
+Comment=Default Cursor Theme
+Inherits=$MOUSE_CURSOR_THEME" > "$XDG_DATA_HOME/icons/default/index.theme"
+
+command -v gsettings >/dev/null && {
+	gsettings set org.gnome.desktop.interface gtk-theme    "$BUI_GTK_THEME"
+	gsettings set org.gnome.desktop.interface icon-theme   "$BUI_ICON_THEME"
+	gsettings set org.gnome.desktop.interface cursor-theme "$BUI_MOUSE_CURSOR_THEME"
+	gsettings set org.gnome.desktop.interface font-name    "$BUI_FONT_FAMILY $BUI_FONT_SIZE"
+}
+
+
+exit 0

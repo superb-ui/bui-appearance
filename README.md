@@ -18,6 +18,7 @@
 ## Setup
 ### Dependencies
 - `sh` to process
+- `gsettings` to (optional)
 
 ### Installation
 #### Manually
