@@ -1,10 +1,10 @@
 <h1 align="center"><code>bui-appearance</code></h1>
 <p align="center">BUI for widget toolkit (GTK)</p>
-<p align="center"><a href="https://github.com/NNBnh/bui-appearance/blob/main/LICENSE"><img src="https://img.shields.io/github/license/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=for-the-badge" alt="License: GPL-3.0"></a> <img src="https://img.shields.io/github/last-commit/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=for-the-badge"></p>
+<p align="center"><a href="https://github.com/NNBnh/bui-appearance/blob/main/LICENSE"><img src="https://img.shields.io/github/license/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=for-the-badge" alt="License: GPL-3.0"></a> <a href="https://gist.github.com/NNBnh/9ef453aba3efce26046e0d3119dab5a7#development-abandoned"><img src="https://img.shields.io/badge/development-abandoned-%234EAA25.svg?labelColor=073551&style=for-the-badge"></a></p>
 <p align="center"><a href="https://github.com/NNBnh/bui-appearance/watchers"><img src="https://img.shields.io/github/watchers/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=flat-square"></a> <a href="https://github.com/NNBnh/bui-appearance/stargazers"><img src="https://img.shields.io/github/stars/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=flat-square"></a> <a href="https://github.com/NNBnh/bui-appearance/network/members"><img src="https://img.shields.io/github/forks/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=flat-square"></a> <a href="https://github.com/NNBnh/bui-appearance/issues"><img src="https://img.shields.io/github/issues/NNBnh/bui-appearance?labelColor=073551&color=4EAA25&style=flat-square"></a></p>
 
 ## About
-`bui-appearance` is an UI tool written in [`portable sh`](https://github.com/dylanaraps/pure-sh-bible) that change widget toolkit like [GTK](https://gtk.org) and [QT](https://www.qt.io) setting using [BUI environment variables](https://github.com/NNBnh/dots/wiki/bui).
+`bui-appearance` is an UI tool written in [`portable sh`](https://github.com/dylanaraps/pure-sh-bible) that change widget toolkit like [GTK](https://gtk.org) and [QT](https://www.qt.io) setting using [BUI environment variables](https://github.com/superb-ui/bui).
 
 ## Contents
 - [About](#about)
